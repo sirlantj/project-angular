@@ -1,0 +1,70 @@
+<div class="container ">
+  <mat-tab-group (selectedTabChange)="tabChanged($event)">
+    <mat-tab label="Invited">
+      <mat-card *ngFor="let lead of leadsSource" class="centres-card">
+        <mat-card-header>
+          <div mat-card-avatar color="warn">
+            {{lead.contact.name[0]}}
+          </div>
+                  
+          <mat-card-title>{{lead.contact.name}}</mat-card-title>
+          <mat-card-subtitle>
+            {{lead.dateCreated | date:'medium'}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="location">
+            <mat-icon> location_on </mat-icon> {{lead.suburb}}
+            <mat-icon> work_outline </mat-icon> {{lead.category.name}}
+            Job ID: {{lead.id  | slice:0:5}}
+          </div>
+          <div class="description">
+            {{lead.description}}
+          </div>
+        </mat-card-content>
+    
+        <mat-card-actions>
+          <button mat-raised-button color="warn" (click)="updateLead(lead.id, lead.categoryId, lead.contactId, 
+          lead.suburb, lead.price, 'A', lead.description, lead.dateCreated)">
+            Accept
+          </button>
+          <button mat-raised-button color="primary" (click)="updateLead(lead.id, lead.categoryId, lead.contactId, 
+          lead.suburb, lead.price, 'D', lead.description, lead.dateCreated)">
+            Decline
+          </button>
+          <span><b>$ {{lead.price}}</b> Lead invitation</span>
+        </mat-card-actions>
+      </mat-card>
+    </mat-tab>
+
+    <mat-tab label="Accepted">
+      <mat-card *ngFor="let lead of leadsSource">
+        <mat-card-header fxLayout fxLayoutAlign="start center">
+          <div mat-card-avatar color="warn">
+            {{lead.contact.name[0]}}
+          </div>
+          <mat-card-title>{{lead.contact.name}} {{lead.contact.lastName}}</mat-card-title>
+          <mat-card-subtitle>
+            {{lead.dateCreated | date:'medium'}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="location">
+            <mat-icon> location_on </mat-icon> {{lead.suburb}}
+            &nbsp;<mat-icon> work_outline </mat-icon> {{lead.category.name}}
+            &nbsp;Job ID: {{lead.id  | slice:0:5}}
+            &nbsp;${{lead.price}} Lead invitation
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <div>
+            <mat-icon>phone</mat-icon> <span class="contact">{{lead.contact.phone}}</span>
+            &nbsp;<mat-icon> email</mat-icon> <span class="contact">{{lead.contact.email}}</span>
+          </div>
+          <br />
+          {{lead.description}}
+        </mat-card-footer>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>
