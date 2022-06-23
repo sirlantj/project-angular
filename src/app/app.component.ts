@@ -53,8 +53,19 @@ export class AppComponent implements OnInit {
     });
   }
 
+  discount(value: number): number {
+    return value = value * 0.9;
+  }
+
   updateLead(id: string, category: number, contact: number, suburb: string, 
     price: number, status: string, description: string, dataCreated: string): void {
+    
+    if(price > 500) {
+      price = this.discount(price);
+    }
+
+    console.log(price);
+
     this.leadsRequest = { 
       id: id,
       categoryId: category,
