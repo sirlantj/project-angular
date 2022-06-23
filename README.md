@@ -5,7 +5,7 @@ Project showcasing my to consuming my API implementation.
 ## REST API
 Here's a url from my application:
 
-[here]([https://#/](https://github.com/sirlantj/api-dotnetcore-example)).
+[here]([https://#/](https://github.com/sirlantj/api-dotnetcore-example).
 
 ## Prerequisites
 
